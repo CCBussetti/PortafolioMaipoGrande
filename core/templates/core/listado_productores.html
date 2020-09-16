@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'base' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'listado_productores' %}">refresh</a>
+                </li>
+                <li>
+                    <a href="{% url 'nuevos_productores' %}">nuevos productores</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>gestor de productores</h1>
+    <table>
+        <tr>
+            <th>rut Productor</th>
+            <th>nombre</th>
+            <th>apellido</th>
+            <th>telefono</th>
+            <th>email</th>
+            <th>Opciones</th>
+
+        </tr>
+        
+        {% for p in Productores %}
+        <tr>
+            <td>{{p.rut_productor}} </td>
+            <td>{{p.nombre_productor}} </td>
+            <td>{{p.apellido_productor}} </td>
+            <td>{{p.telefono}} </td>
+            <td>{{p.email}} </td>
+            <td>
+                <a href="{% url 'modificar_productores' p.rut_productor %}">Modificar</a>
+                <a href="{% url 'eliminar_productores' p.rut_productor %}">Eliminar</a>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

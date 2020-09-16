@@ -4,8 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </head>
 <body>
     <h1>gestor de productos</h1>
+    <form action="" method="POST">
+
+        {% csrf_token %}
+        <label for="">Nombre</label>
+        <input type="text" name="nombre">
+        <br>
+        <label for="">Tipo Fruta</label>
+        <select name="tipofruta" id="tipo_fruta">
+            <option value="">Selecionar</option>
+            {% for t in tipo_fruta %}
+            <option value="{{t.0}}">{{t.1}}</option>
+            {% endfor%}
+        </select>
+        <br>
+        <label for="">Precio</label>
+        <input type="text" name="precio" id="precio">
+        <br>
+        <label for="">Calidad</label>
+        <input type="text" name="calidad" id="calidad">
+        <br>
+        <label for="">Id productor</label>
+        <select name="id_productor" id="id_productor">
+            <option value="">Seleccionar</option>
+            {% for i in id_productor %}
+            <option value="{{i.0}}">{{i.0}}</option>
+            {% endfor%}
+        </select>
+        <input type="submit" value="Guardar">
+    
+
+
+    </form>
+
+        {{mensaje}}
+
+    <h2>Productos</h2>
+    <table class="table table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Tipo de fruta</th>
+            <th>Precio</th>
+            <th>Calidad</th>
+        </tr>
+
+        {% for x in productos %}
+            <tr>
+                <td>{{x.0}}</td>
+                <td>{{x.1}}</td>
+                <td>{{x.2}}</td>
+                <td>{{x.3}}</td>
+                <td>{{x.4}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 </body>
 </html>

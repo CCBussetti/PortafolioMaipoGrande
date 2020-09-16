@@ -7,5 +7,15 @@
 </head>
 <body>
     <h2>Autenticación</h2>
+
+    <form action="" method="POST" class="forms-group">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table}}
+
+        </table>
+        
+        <input type="submit" value="Login">
+    </form>
 </body>
 </html>

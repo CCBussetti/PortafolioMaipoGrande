@@ -48,6 +48,7 @@ class Contrato(models.Model):
     id_contrato = models.BigAutoField(primary_key=True)
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
+    rut_productor = models.ForeignKey('Productor', models.DO_NOTHING, db_column='rut_productor')
 
     class Meta:
         managed = False
@@ -93,8 +94,9 @@ class MetodoPagoL(models.Model):
 
 class PagoEx(models.Model):
     id_pagoex = models.BigAutoField(primary_key=True)
-    fecha_pagoex = models.DateField()
+    fecha_pagoex = models.DateField(blank=True, null=True)
     id_metodo_pago = models.ForeignKey(MetodoPagoE, models.DO_NOTHING, db_column='id_metodo_pago')
+    id_proceso_ex = models.ForeignKey('ProcesoVentaEx', models.DO_NOTHING, db_column='id_proceso_ex')
 
     class Meta:
         managed = False
@@ -125,11 +127,10 @@ class ProcesoVentaEx(models.Model):
     id_proceso_ex = models.BigAutoField(primary_key=True)
     impuesto_aduana = models.BigIntegerField()
     comision_empresa = models.BigIntegerField()
-    id_solicitud = models.ForeignKey('SolicitudCompraExt', models.DO_NOTHING, db_column='id_solicitud')
     id_producto = models.ForeignKey('Producto', models.DO_NOTHING, db_column='id_producto')
     id_subasta = models.ForeignKey('Subasta', models.DO_NOTHING, db_column='id_subasta')
+    id_solicitud = models.ForeignKey('SolicitudCompraExt', models.DO_NOTHING, db_column='id_solicitud')
     id_transf = models.ForeignKey('TransporteFinal', models.DO_NOTHING, db_column='id_transf')
-    id_pagoex = models.ForeignKey(PagoEx, models.DO_NOTHING, db_column='id_pagoex')
 
     class Meta:
         managed = False
@@ -179,7 +180,6 @@ class Productor(models.Model):
     apellido_productor = models.CharField(max_length=25)
     telefono = models.BigIntegerField()
     email = models.CharField(max_length=100)
-    id_contrato = models.ForeignKey(Contrato, models.DO_NOTHING, db_column='id_contrato')
 
     class Meta:
         managed = False
@@ -254,7 +254,6 @@ class Transportista(models.Model):
     apellido_transportista = models.CharField(max_length=25)
     telefono = models.BigIntegerField()
     email = models.CharField(max_length=100)
-    patente = models.ForeignKey('Vehiculo', models.DO_NOTHING, db_column='patente')
 
     class Meta:
         managed = False
@@ -266,6 +265,7 @@ class Vehiculo(models.Model):
     capacidad = models.BigIntegerField()
     refigeracion = models.CharField(max_length=2)
     tamanio = models.CharField(max_length=25)
+    rut_transportista = models.ForeignKey(Transportista, models.DO_NOTHING, db_column='rut_transportista')
 
     class Meta:
         managed = False
