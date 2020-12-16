@@ -123,7 +123,7 @@ class ClienteInterno(models.Model):
         db_table = 'cliente_interno'
 
     def __str__(self):
-        return self.rut_clii
+        return '%s %s' % (self.nombre_clii , self.apellido_clii)
 
 
 class ComunaLocal(models.Model):
@@ -204,10 +204,7 @@ class Estado(models.Model):
 
     def __str__(self):
         return self.tipo
-<<<<<<< HEAD
 
-=======
->>>>>>> cristobal
 
 class Fruta(models.Model):
     id_fruta = models.FloatField(primary_key=True)
@@ -259,8 +256,8 @@ class PagoEx(models.Model):
 class PagoI(models.Model):
     id_pagoi = models.BigAutoField(primary_key=True)
     fecha_pago = models.DateField()
-    id_metodo_pago = models.ForeignKey(MetodoPagoL, models.DO_NOTHING, db_column='id_metodo_pago')
-    id_vental = models.ForeignKey('ProcesoVentaLocal', models.DO_NOTHING, db_column='id_vental')
+    id_metodo_pago = models.ForeignKey(MetodoPagoL, models.DO_NOTHING, db_column='id_metodo_pago' , verbose_name="Metodo de pago")
+    id_vental = models.ForeignKey('ProcesoVentaLocal', models.DO_NOTHING, db_column='id_vental', verbose_name="Proceso")
 
     class Meta:
         managed = False
@@ -304,6 +301,8 @@ class ProcesoVentaLocal(models.Model):
     class Meta:
         managed = False
         db_table = 'proceso_venta_local'
+    def __str__(self):
+        return '%s' % (self.id_produs)
 
 
 class Producto(models.Model):
@@ -332,6 +331,9 @@ class ProductoSobrante(models.Model):
     class Meta:
         managed = False
         db_table = 'producto_sobrante'
+    
+    def __str__(self):
+        return '%s' % (self.id_fruta)
 
 
 

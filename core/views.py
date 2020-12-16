@@ -418,7 +418,7 @@ def registroClienteIn(request):
             g_clien_In.permissions.add(permiso1, permiso2, permiso3, permiso4, permiso5, permiso6, permiso7, permiso8, permiso9, permiso10)
             user.groups.add(g_clien_In)
             login(request, user)
-            return redirect('home')
+            return redirect('index')
     else:
         form = RegistroClienteIn()
         profile_form = ClienteInternoForm()

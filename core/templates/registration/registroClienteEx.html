@@ -3,7 +3,7 @@
  
 <a class="nav-link active" href="{% url 'index' %}">Inicio <span class="sr-only">(current)</span></a>
          <a href="{% url 'mainPage_Externos' %}" class="nav-link">Portal Cliente Externo</a>
-         <a href="#" class="nav-link">Portal Cliente Interno</a>
+         <a href="{% url 'mainPage_Internos' %}" class="nav-link">Portal Cliente Interno</a>
          <a href="{% url 'productos' %}" class="nav-link">Portal Productor</a>
          <a href="{% url 'list_subastas'%}" class="nav-link">Portal Transportista</a>
          {% if user.is_authenticated %}
