@@ -10,3 +10,14 @@ body{
     width: fit-content;
     max-width: 75%;
   }
+
+footer {
+    background: #ffffff;
+    color: #868c96;
+    z-index: 50;
+    bottom: 0;  
+}
+footer p {
+    padding: 40px 0;
+    text-align: center;
+}
