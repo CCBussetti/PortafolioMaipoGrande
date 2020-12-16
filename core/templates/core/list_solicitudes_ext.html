@@ -2,11 +2,8 @@
 {% extends 'core/base.html' %}
 {% block navbar %}
  
-<a class="nav-link active" href="{% url 'index' %}">Inicio <span class="sr-only">(current)</span></a>
-         <a href="{% url 'mainPage_Externos' %}" class="nav-link">Portal Cliente Externo</a>
-         <a href="{% url 'mainPage_Internos' %}" class="nav-link">Portal Cliente Interno</a>
-         <a href="{% url 'productos' %}" class="nav-link">Portal Productor</a>
-         <a href="{% url 'list_subastas'%}" class="nav-link">Portal Transportista</a>
+<a class="nav-link active" href="{% url 'mainPage_Externos' %}">Inicio <span class="sr-only">(current)</span></a>
+         <a href="{% url 'list_solicitud_ext' %}" class="nav-link">Lista de Solicitudes</a>
          {% if user.is_authenticated %}
          <a class="active nav-link" href="#">Bienvenido: {{ user.username }}</a>
          <a href="{% url 'logout' %}" class="nav-link">Cerrar Sesión</a>
@@ -28,8 +25,8 @@
 <ul class="list-group list-group">
     {% for s in solicitud_ext %}
     <li class="list-group-item">  
-ID:  {{s.id_solicitud}} Presupuesto: ${{s.presupuesto}} Fruta: {{s.id_producto}} Productor: {{s.nie}} Tipo de Fruta: {{s.id_fruta}} 
-Estado: <button type="button" class="btn btn-info">{{s.id_estado}}</button>
+<p><b>Presupuesto:</b> ${{s.presupuesto}}</p> <p><b>Cantidad:</b> {{s.id_producto}} Kg</p> <p><b>Tipo de Fruta:</b> {{s.id_fruta}} </p>
+<b>Estado:</b> <button type="button" class="btn btn-info">{{s.id_estado}}</button>
 
     </li>
     {% endfor %}

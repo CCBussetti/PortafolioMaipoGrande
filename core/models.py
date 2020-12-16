@@ -104,6 +104,9 @@ class ClienteExterno(models.Model):
         managed = False
         db_table = 'cliente_externo'
 
+    def __str__(self):
+        return '%s %s' % ( self.nombre_cliex , self.apellido_cliex)
+
 
 class ClienteInterno(models.Model):
     rut_clii = models.CharField(primary_key=True, max_length=10)
@@ -193,6 +196,8 @@ class Estado(models.Model):
         managed = False
         db_table = 'estado'
 
+    def __str__(self):
+        return self.tipo
 
 class Fruta(models.Model):
     id_fruta = models.FloatField(primary_key=True)
@@ -201,6 +206,9 @@ class Fruta(models.Model):
     class Meta:
         managed = False
         db_table = 'fruta'
+
+    def __str__(self):
+        return self.nombre
 
 
 class MetodoPagoE(models.Model):
@@ -317,6 +325,8 @@ class Productor(models.Model):
         managed = False
         db_table = 'productor'
 
+    def __str__(self):
+        return '%s %s' % (self.nombre_productor , self.apellido_productor)
 
 class RegionLocal(models.Model):
     id_region = models.BigAutoField(primary_key=True)
@@ -351,14 +361,17 @@ class ReporteLocal(models.Model):
 class SolicitudCompraExt(models.Model):
     id_solicitud = models.BigAutoField(primary_key=True)
     presupuesto = models.BigIntegerField()
-    id_producto = models.BigIntegerField()
-    nie = models.ForeignKey(ClienteExterno, models.DO_NOTHING, db_column='nie')
-    id_fruta = models.ForeignKey(Fruta, models.DO_NOTHING, db_column='id_fruta')
+    id_producto = models.BigIntegerField(verbose_name="Cantidad(Kg)")
+    nie = models.ForeignKey(ClienteExterno, models.DO_NOTHING, db_column='nie', verbose_name="Cliente")
+    id_fruta = models.ForeignKey(Fruta, models.DO_NOTHING, db_column='id_fruta',verbose_name="Tipo de Fruta")
     id_estado = models.ForeignKey(Estado, models.DO_NOTHING, db_column='id_estado')
 
     class Meta:
         managed = False
         db_table = 'solicitud_compra_ext'
+
+   
+    
 
 
 class Subasta(models.Model):
@@ -392,6 +405,9 @@ class Transportista(models.Model):
     class Meta:
         managed = False
         db_table = 'transportista'
+    
+    def __str__(self):
+        return '%s %s' % (self.nombre_transportista , self.apellido_transportista)
 
 
 class Vehiculo(models.Model):
